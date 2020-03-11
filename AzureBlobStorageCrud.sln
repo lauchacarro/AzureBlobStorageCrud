@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobStorageCrud.Server", "Server\AzureBlobStorageCrud.Server.csproj", "{0BF64C34-241E-4018-9A8E-782DDC25327F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBlobStorageCrud.Server", "Server\AzureBlobStorageCrud.Server.csproj", "{0BF64C34-241E-4018-9A8E-782DDC25327F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobStorageCrud.Client", "Client\AzureBlobStorageCrud.Client.csproj", "{CFA269BA-8C84-4F6A-82D8-BAB817D60F99}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureBlobStorageCrud.Shared", "Shared\AzureBlobStorageCrud.Shared.csproj", "{61E566C5-E61B-4CF9-8C1F-53CF97842054}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureBlobStorageCrud.Client", "Client\AzureBlobStorageCrud.Client.csproj", "{CFA269BA-8C84-4F6A-82D8-BAB817D60F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{CFA269BA-8C84-4F6A-82D8-BAB817D60F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA269BA-8C84-4F6A-82D8-BAB817D60F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFA269BA-8C84-4F6A-82D8-BAB817D60F99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{61E566C5-E61B-4CF9-8C1F-53CF97842054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61E566C5-E61B-4CF9-8C1F-53CF97842054}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61E566C5-E61B-4CF9-8C1F-53CF97842054}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{61E566C5-E61B-4CF9-8C1F-53CF97842054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

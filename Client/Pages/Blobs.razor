@@ -1,0 +1,80 @@
+﻿@page "/Containers/{ContainerName}/Blobs"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h3>Blobs</h3>
+
+@if (blobs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        <InputFile OnChange="HandleFileSelected" />
+        <button class="btn btn-primary" @onclick="@UploadOnClick">Upload Blob</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Container Name</th>
+                <th>Download</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var name in blobs)
+            {
+                <tr>
+                    <td>@name</td>
+                    <td><a class="btn btn-info" target="_blank" href="@($"/api/Containers/{ContainerName}/Blobs/{name}")">Download</a></td>
+                    <td><button class="btn btn-info" @onclick="(() => DeleteOnClick(name))">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
+@code {
+    [Parameter]
+    public string ContainerName { get; set; }
+    IFileListEntry file;
+
+    private List<string> blobs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        blobs = (await Http.GetJsonAsync<IEnumerable<string>>($"api/Containers/{ContainerName}/Blobs")).ToList();
+    }
+
+    protected async Task DeleteOnClick(string blobName)
+    {
+        await Http.DeleteAsync($"api/Containers/{ContainerName}/Blobs/{blobName}");
+        blobs.Remove(blobName);
+        StateHasChanged();
+    }
+
+    void HandleFileSelected(IFileListEntry[] files)
+    {
+        file = files.FirstOrDefault();
+    }
+
+    protected async Task UploadOnClick()
+    {
+        var content = new MultipartFormDataContent();
+
+        content.Add(new StreamContent(file.Data),
+            "file",
+            file.Name);
+
+        await Http.PostAsync($"api/Containers/{ContainerName}/Blobs", content);
+
+        if (!blobs.Contains(file.Name))
+            blobs.Add(file.Name);
+
+        StateHasChanged();
+    }
+}

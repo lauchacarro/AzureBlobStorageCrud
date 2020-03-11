@@ -1,6 +1,6 @@
 ﻿@page "/Containers"
-@using AzureBlobStorageCrud.Shared
 @inject HttpClient Http
+@inject NavigationManager Navigation
 
 <h1>Containers</h1>
 
@@ -14,13 +14,14 @@ else
 {
     <div>
         <input type="text" placeholder="Name" @bind="@newContainerName" />
-        <button @onclick="@CreateOnClick">Create New</button>
+        <button class="btn btn-primary" @onclick="@CreateOnClick">Create New</button>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th>Container Name</th>
                 <th>Delete</th>
+                <th>Blobs</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +29,8 @@ else
             {
                 <tr>
                     <td>@name</td>
-                    <td><button @onclick="(() => DeleteOnClick(name))">Delete</button></td>
+                    <td><button class="btn btn-info" @onclick="(() => DeleteOnClick(name))">Delete</button></td>
+                    <td><button class="btn btn-info" @onclick="(() => ShowBlobOnClick(name))">Show Blobs</button></td>
                 </tr>
             }
         </tbody>
@@ -52,11 +54,17 @@ else
         newContainerName = string.Empty;
         StateHasChanged();
     }
+
     protected async Task DeleteOnClick(string name)
     {
         await Http.DeleteAsync($"api/Containers/{name}");
         containerNames.Remove(name);
         StateHasChanged();
+    }
+
+    protected void ShowBlobOnClick(string name)
+    {
+        Navigation.NavigateTo($"/Containers/{name}/Blobs");
     }
 
 }

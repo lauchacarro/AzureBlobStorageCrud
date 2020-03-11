@@ -6,11 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="3.2.0-preview1.20073.1" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Client\AzureBlobStorageCrud.Client.csproj" />
-    <ProjectReference Include="..\Shared\AzureBlobStorageCrud.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,6 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AzureBlobStorageCrud.Server.Controllers
 {
@@ -20,7 +19,6 @@ namespace AzureBlobStorageCrud.Server.Controllers
             _client = client;
         }
 
-        // GET: api/<controller>
         [HttpGet]
         public async IAsyncEnumerable<string> GetAsync()
         {
@@ -30,28 +28,12 @@ namespace AzureBlobStorageCrud.Server.Controllers
             }
         }
 
-        // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<controller>
         [HttpPost]
         public async Task Post([FromBody]string name)
         {
             BlobContainerClient blobContainer = await _client.CreateBlobContainerAsync(name);
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-            throw new InvalidOperationException();
-        }
-
-        // DELETE api/<controller>/5
         [HttpDelete("{name}")]
         public async Task Delete(string name)
         {
