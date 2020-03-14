@@ -43,10 +43,10 @@ namespace AzureBlobStorageCrud.Server.Controllers
         }
 
         [HttpPost]
-        public void PostAsync(string containerName, IFormFile file)
+        public async Task PostAsync(string containerName, IFormFile file)
         {
             BlobContainerClient container = _client.GetBlobContainerClient(containerName);
-            container.UploadBlobAsync(file.FileName, file.OpenReadStream());
+            await container.UploadBlobAsync(file.FileName, file.OpenReadStream());
         }
 
         [HttpDelete("{name}")]
