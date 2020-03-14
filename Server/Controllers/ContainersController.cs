@@ -29,13 +29,13 @@ namespace AzureBlobStorageCrud.Server.Controllers
         }
 
         [HttpPost]
-        public async Task Post([FromBody]string name)
+        public async Task PostAsync([FromBody]string name)
         {
             BlobContainerClient blobContainer = await _client.CreateBlobContainerAsync(name);
         }
 
         [HttpDelete("{name}")]
-        public async Task Delete(string name)
+        public async Task DeleteAsync(string name)
         {
             await _client.DeleteBlobContainerAsync(name);
         }

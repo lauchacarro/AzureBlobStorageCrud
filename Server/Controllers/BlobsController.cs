@@ -23,7 +23,7 @@ namespace AzureBlobStorageCrud.Server.Controllers
         }
 
         [HttpGet]
-        public async IAsyncEnumerable<string> Get(string containerName)
+        public async IAsyncEnumerable<string> GetAsync(string containerName)
         {
             BlobContainerClient container = _client.GetBlobContainerClient(containerName);
             await foreach (var blob in container.GetBlobsAsync())
@@ -33,7 +33,7 @@ namespace AzureBlobStorageCrud.Server.Controllers
         }
 
         [HttpGet("{name}")]
-        public async Task<FileResult> Get(string containerName, string name)
+        public async Task<FileResult> GetAsync(string containerName, string name)
         {
             BlobContainerClient container = _client.GetBlobContainerClient(containerName);
             BlobClient blob = container.GetBlobClient(name);
@@ -43,14 +43,14 @@ namespace AzureBlobStorageCrud.Server.Controllers
         }
 
         [HttpPost]
-        public void Post(string containerName, IFormFile file)
+        public void PostAsync(string containerName, IFormFile file)
         {
             BlobContainerClient container = _client.GetBlobContainerClient(containerName);
             container.UploadBlobAsync(file.FileName, file.OpenReadStream());
         }
 
         [HttpDelete("{name}")]
-        public async Task Delete(string containerName, string name)
+        public async Task DeleteAsync(string containerName, string name)
         {
             BlobContainerClient container = _client.GetBlobContainerClient(containerName);
             BlobClient blob = container.GetBlobClient(name);
